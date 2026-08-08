@@ -37,6 +37,9 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
+body.entry-open {
+  overflow: hidden;
+}
 a { text-decoration: none; color: inherit; }
 
 /* ═══════════════════════════════════════
@@ -629,9 +632,7 @@ a { text-decoration: none; color: inherit; }
   <div class="entry-content">
     <div class="bonfire-wrap">
       <div class="bonfire-glow"></div>
-      <video class="bonfire-vid" autoplay muted loop playsinline>
-        <source src="HD_Dreamscene_Bonfire_Loop__Unkindled_.mp4" type="video/mp4">
-      </video>
+      <img class="bonfire-vid" src="Bonfire_zpsedocgnqr.gif" alt="Bonfire">
     </div>
     <div class="entry-name">W<em>olff</em></div>
     <div class="entry-lore">"The fire fades, but the editor remains — shaping light from the dark."</div>
@@ -645,13 +646,13 @@ a { text-decoration: none; color: inherit; }
   <div class="hero-title">W<span class="fire">olff</span></div>
   <div class="hero-tagline">"Raised from the ashes. Forged in short form."</div>
   <div class="hero-status">
-    <div class="stat-block">
-      <div class="stat-n">2+</div>
-      <div class="stat-l">Years of Trial</div>
-    </div>
     <div class="status-pill">
       <div class="status-dot"></div>
       Open to Long &amp; Short Form
+    </div>
+    <div class="stat-block">
+      <div class="stat-n">2+</div>
+      <div class="stat-l">Years of Trial</div>
     </div>
   </div>
 
@@ -843,8 +844,10 @@ a { text-decoration: none; color: inherit; }
 })();
 
 // ── ENTRY ──
+document.body.classList.add('entry-open');
 document.getElementById('enterSite').addEventListener('click', () => {
   document.getElementById('entryScreen').classList.add('hidden');
+  document.body.classList.remove('entry-open');
 });
 
 // ── FEATURED VIDEOS ──
