@@ -48,10 +48,8 @@ a { text-decoration: none; color: inherit; }
 .world-bg {
   position: fixed; inset: 0; z-index: -1;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,96,26,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(184,149,58,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(40,32,20,0.8) 0%, transparent 70%),
-    var(--darker);
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,96,26,0.08) 0%, transparent 70%),
+    rgba(13,11,8,0.55);
 }
 
 /* Fog layers */
@@ -86,6 +84,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--gold); font-size: 11px; letter-spacing: 0.3em;
   font-family: var(--font-head); text-transform: uppercase;
   opacity: 0.5;
+  position: relative; z-index: 1;
 }
 .rune-divider::before, .rune-divider::after {
   content: '';
@@ -222,6 +221,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   padding: 80px 6% 60px;
   position: relative;
+  z-index: 1;
 }
 
 .hero > * {
@@ -492,7 +492,7 @@ a { text-decoration: none; color: inherit; }
    VIDEO BG — SEGUNDA PARTE
 ═══════════════════════════════════════ */
 .site-video-bg {
-  position: fixed; inset: 0; z-index: -2;
+  position: fixed; inset: 0; z-index: 0;
   pointer-events: none; overflow: hidden;
 }
 .site-video-bg video {
@@ -503,19 +503,18 @@ a { text-decoration: none; color: inherit; }
   min-width: 100%; min-height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
-  opacity: 0.35;
-  animation: site-vid-breathe 4s ease-in-out infinite;
+  animation: site-vid-breathe 3s ease-in-out infinite;
 }
 @keyframes site-vid-breathe {
-  0%   { opacity: 0.15; }
-  50%  { opacity: 0.45; }
-  100% { opacity: 0.15; }
+  0%   { opacity: 0.5; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 0.5; }
 }
 
 /* ═══════════════════════════════════════
    SECTION
 ═══════════════════════════════════════ */
-.section { padding: 60px 6%; max-width: 1300px; margin: 0 auto; }
+.section { padding: 60px 6%; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
 .sec-eyebrow {
   font-family: var(--font-head);
   font-size: 9px; font-weight: 600;
