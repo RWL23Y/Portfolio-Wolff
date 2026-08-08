@@ -126,11 +126,12 @@ a { text-decoration: none; color: inherit; }
   transform: translate(-50%, -50%);
   object-fit: cover;
   pointer-events: none;
-  animation: vid-breathe 5s ease-in-out infinite alternate;
+  animation: vid-breathe 3s ease-in-out infinite;
 }
 @keyframes vid-breathe {
-  from { opacity: 0.45; }
-  to   { opacity: 0.85; }
+  0%   { opacity: 0; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 .yt-bg-overlay {
   position: absolute; inset: 0; z-index: 1;
