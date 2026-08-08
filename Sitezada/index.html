@@ -377,6 +377,21 @@ a { text-decoration: none; color: inherit; }
   font-size: 12px;
   color: var(--ember);
 }
+.profile-stat {
+  display: flex; align-items: baseline; gap: 6px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+.profile-stat-n {
+  font-family: var(--font-head);
+  font-size: 20px; font-weight: 700;
+  color: var(--gold); line-height: 1;
+}
+.profile-stat-l {
+  font-size: 9px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.15em;
+}
 
 /* Tools / Attributes */
 .attrs-panel {
@@ -657,10 +672,6 @@ a { text-decoration: none; color: inherit; }
       <div class="status-dot"></div>
       Open to Long &amp; Short Form
     </div>
-    <div class="stat-block">
-      <div class="stat-n">2+</div>
-      <div class="stat-l">Years of Trial</div>
-    </div>
   </div>
 
   <div class="hero-grid">
@@ -692,6 +703,10 @@ a { text-decoration: none; color: inherit; }
       <div class="profile-info">
         <div class="profile-name">Rafael Wolff</div>
         <div class="profile-class">Chosen Undead · Video Editor</div>
+        <div class="profile-stat">
+          <span class="profile-stat-n">2+</span>
+          <span class="profile-stat-l">Years of Trial</span>
+        </div>
       </div>
 
       <div class="attrs-panel">
@@ -777,13 +792,7 @@ a { text-decoration: none; color: inherit; }
 <!-- FOOTER -->
 <div class="souls-footer">
   <div class="footer-bonfire-wrap">
-    <div style="position:relative;width:50px;height:65px;">
-      <div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:80px;height:40px;background:radial-gradient(ellipse,rgba(200,96,26,0.3) 0%,transparent 70%);"></div>
-      <div class="flame flame-1" style="width:26px;height:38px;bottom:14px;"></div>
-      <div class="flame flame-2" style="width:18px;height:28px;bottom:20px;"></div>
-      <div class="flame flame-3" style="width:12px;height:20px;bottom:26px;"></div>
-      <div class="bonfire-base" style="width:40px;height:14px;bottom:0;"></div>
-    </div>
+    <img src="fogueiragif.gif" alt="Bonfire" style="width:40px;height:48px;object-fit:contain;image-rendering:pixelated;mix-blend-mode:multiply;filter:drop-shadow(0 0 8px rgba(200,96,26,0.9));">
   </div>
   <div class="footer-name">Portfolio · Wolff</div>
   <div class="footer-lore">© 2026 Rafael Wolff Luiz · All rights reserved · "You Died? Keep Editing."</div>
