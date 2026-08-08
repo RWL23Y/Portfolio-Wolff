@@ -130,8 +130,8 @@ a { text-decoration: none; color: inherit; }
 .yt-bg-overlay {
   position: absolute; inset: 0; z-index: 1;
   background-image:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.62) 100%),
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.22) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.18) 0%, transparent 70%);
 }
 
 .entry-content {
@@ -140,27 +140,26 @@ a { text-decoration: none; color: inherit; }
   align-items: center; gap: 1.2rem; text-align: center;
 }
 
-/* Bonfire Video */
-.bonfire-wrap { position: relative; width: 320px; height: 320px; margin: 0 auto; }
+/* Bonfire GIF pixel art */
+.bonfire-wrap { position: relative; width: 260px; height: 300px; margin: 0 auto; }
 .bonfire-vid {
   width: 100%; height: 100%;
   object-fit: contain;
-  opacity: 0.95;
+  image-rendering: pixelated;
   filter:
-    drop-shadow(0 0 32px rgba(200,96,26,0.95))
-    drop-shadow(0 0 64px rgba(224,120,32,0.6))
-    brightness(1.15);
+    drop-shadow(0 0 18px rgba(200,96,26,0.8))
+    drop-shadow(0 0 40px rgba(224,120,32,0.45));
 }
 .bonfire-glow {
-  position: absolute; bottom: -20px; left: 50%;
+  position: absolute; bottom: -10px; left: 50%;
   transform: translateX(-50%);
-  width: 260px; height: 80px;
-  background: radial-gradient(ellipse, rgba(200,96,26,0.55) 0%, transparent 70%);
+  width: 220px; height: 60px;
+  background: radial-gradient(ellipse, rgba(200,96,26,0.4) 0%, transparent 70%);
   animation: glow-pulse 1.5s ease-in-out infinite alternate;
 }
 @keyframes glow-pulse {
-  from { opacity: 0.6; transform: translateX(-50%) scale(1); }
-  to   { opacity: 1;   transform: translateX(-50%) scale(1.25); }
+  from { opacity: 0.5; transform: translateX(-50%) scale(1); }
+  to   { opacity: 1;   transform: translateX(-50%) scale(1.2); }
 }
 
 .entry-name {
@@ -632,7 +631,7 @@ a { text-decoration: none; color: inherit; }
   <div class="entry-content">
     <div class="bonfire-wrap">
       <div class="bonfire-glow"></div>
-      <img class="bonfire-vid" src="Bonfire_zpsedocgnqr.gif" alt="Bonfire">
+      <img class="bonfire-vid" src="Dark_Souls_Bonfire_Sticker_-_Dark_Souls_Bonfire_-_Descubre_y_comparte_GIF.gif" alt="Bonfire">
     </div>
     <div class="entry-name">W<em>olff</em></div>
     <div class="entry-lore">"The fire fades, but the editor remains — shaping light from the dark."</div>
