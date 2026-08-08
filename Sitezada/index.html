@@ -106,33 +106,29 @@ a { text-decoration: none; color: inherit; }
 .entry-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 #entryCanvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
 
-/* YouTube background */
+/* Video background */
 .yt-bg-wrap {
   position: absolute; inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
-.yt-bg-wrap iframe {
+.yt-bg-wrap video {
   position: absolute;
   top: 50%; left: 50%;
-  /* oversized to cover all aspect ratios */
-  width: 177.78vh;  /* 16/9 * 100vh */
-  height: 56.25vw;  /* 9/16 * 100vw */
+  width: 177.78vh;
+  height: 56.25vw;
   min-width: 100%;
   min-height: 100%;
   transform: translate(-50%, -50%);
-  border: none;
+  object-fit: cover;
   pointer-events: none;
 }
 .yt-bg-overlay {
   position: absolute; inset: 0; z-index: 1;
-  background:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%);
-  /* subtle ember tint at bottom */
   background-image:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%),
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.18) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.62) 100%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.22) 0%, transparent 70%);
 }
 
 .entry-content {
@@ -141,23 +137,27 @@ a { text-decoration: none; color: inherit; }
   align-items: center; gap: 1.2rem; text-align: center;
 }
 
-/* Bonfire GIF */
-.bonfire-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto; }
-.bonfire-gif {
+/* Bonfire Video */
+.bonfire-wrap { position: relative; width: 320px; height: 320px; margin: 0 auto; }
+.bonfire-vid {
   width: 100%; height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(200,96,26,0.7));
+  opacity: 0.95;
+  filter:
+    drop-shadow(0 0 32px rgba(200,96,26,0.95))
+    drop-shadow(0 0 64px rgba(224,120,32,0.6))
+    brightness(1.15);
 }
 .bonfire-glow {
-  position: absolute; bottom: -10px; left: 50%;
+  position: absolute; bottom: -20px; left: 50%;
   transform: translateX(-50%);
-  width: 180px; height: 60px;
-  background: radial-gradient(ellipse, rgba(200,96,26,0.4) 0%, transparent 70%);
+  width: 260px; height: 80px;
+  background: radial-gradient(ellipse, rgba(200,96,26,0.55) 0%, transparent 70%);
   animation: glow-pulse 1.5s ease-in-out infinite alternate;
 }
 @keyframes glow-pulse {
-  from { opacity: 0.5; transform: translateX(-50%) scale(1); }
-  to   { opacity: 1;   transform: translateX(-50%) scale(1.2); }
+  from { opacity: 0.6; transform: translateX(-50%) scale(1); }
+  to   { opacity: 1;   transform: translateX(-50%) scale(1.25); }
 }
 
 .entry-name {
@@ -618,20 +618,20 @@ a { text-decoration: none; color: inherit; }
 
 <!-- ENTRY SCREEN -->
 <div class="entry-screen" id="entryScreen">
-  <!-- YouTube background -->
+  <!-- Video background -->
   <div class="yt-bg-wrap">
-    <iframe
-      src="https://www.youtube.com/embed/j4lE-frL3vA?autoplay=1&mute=1&loop=1&playlist=j4lE-frL3vA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      title="bg"></iframe>
+    <video autoplay muted loop playsinline>
+      <source src="HD_Dreamscene_Bonfire_Loop__Unkindled_.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="yt-bg-overlay"></div>
   <canvas id="entryCanvas"></canvas>
   <div class="entry-content">
     <div class="bonfire-wrap">
       <div class="bonfire-glow"></div>
-      <img class="bonfire-gif" src="https://media.tenor.com/OqN_oKHgProAAAAC/dark-souls-bonfire.gif" alt="Bonfire">
+      <video class="bonfire-vid" autoplay muted loop playsinline>
+        <source src="HD_Dreamscene_Bonfire_Loop__Unkindled_.mp4" type="video/mp4">
+      </video>
     </div>
     <div class="entry-name">W<em>olff</em></div>
     <div class="entry-lore">"The fire fades, but the editor remains — shaping light from the dark."</div>
