@@ -126,34 +126,28 @@ a { text-decoration: none; color: inherit; }
   transform: translate(-50%, -50%);
   object-fit: cover;
   pointer-events: none;
+  animation: vid-breathe 5s ease-in-out infinite alternate;
+}
+@keyframes vid-breathe {
+  from { opacity: 0.45; }
+  to   { opacity: 0.85; }
 }
 .yt-bg-overlay {
   position: absolute; inset: 0; z-index: 1;
   background-image:
     radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
     radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.22) 0%, transparent 70%);
-  animation: bg-pulse 4s ease-in-out infinite alternate;
-}
-@keyframes bg-pulse {
-  from { opacity: 0.85; }
-  to   { opacity: 1; }
-}
-.yt-bg-wrap video {
-  animation: vid-pulse 4s ease-in-out infinite alternate;
-}
-@keyframes vid-pulse {
-  from { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
-  to   { opacity: 1;    transform: translate(-50%, -50%) scale(1.03); }
 }
 
 .entry-content {
   position: relative; z-index: 3;
   display: flex; flex-direction: column;
-  align-items: center; gap: 1.2rem; text-align: center;
+  align-items: center; gap: 1rem; text-align: center;
+  margin-top: -80px;
 }
 
 /* Bonfire GIF pixel art */
-.bonfire-wrap { position: relative; width: 260px; height: 300px; margin: 0 auto; }
+.bonfire-wrap { position: relative; width: 160px; height: 190px; margin: 0 auto; }
 .bonfire-vid {
   width: 100%; height: 100%;
   object-fit: contain;
