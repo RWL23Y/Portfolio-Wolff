@@ -37,6 +37,9 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
+body.entry-open {
+  overflow: hidden;
+}
 a { text-decoration: none; color: inherit; }
 
 /* ═══════════════════════════════════════
@@ -45,10 +48,8 @@ a { text-decoration: none; color: inherit; }
 .world-bg {
   position: fixed; inset: 0; z-index: -1;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,96,26,0.12) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 20% 80%, rgba(184,149,58,0.05) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(40,32,20,0.8) 0%, transparent 70%),
-    var(--darker);
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(200,96,26,0.08) 0%, transparent 70%),
+    rgba(13,11,8,0.55);
 }
 
 /* Fog layers */
@@ -83,6 +84,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--gold); font-size: 11px; letter-spacing: 0.3em;
   font-family: var(--font-head); text-transform: uppercase;
   opacity: 0.5;
+  position: relative; z-index: 1;
 }
 .rune-divider::before, .rune-divider::after {
   content: '';
@@ -106,52 +108,59 @@ a { text-decoration: none; color: inherit; }
 .entry-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 #entryCanvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
 
-/* YouTube background */
+/* Video background */
 .yt-bg-wrap {
   position: absolute; inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
-.yt-bg-wrap iframe {
+.yt-bg-wrap video {
   position: absolute;
   top: 50%; left: 50%;
-  /* oversized to cover all aspect ratios */
-  width: 177.78vh;  /* 16/9 * 100vh */
-  height: 56.25vw;  /* 9/16 * 100vw */
+  width: 177.78vh;
+  height: 56.25vw;
   min-width: 100%;
   min-height: 100%;
   transform: translate(-50%, -50%);
-  border: none;
+  object-fit: cover;
   pointer-events: none;
+  animation: vid-breathe 3s ease-in-out infinite;
+}
+@keyframes vid-breathe {
+  0%   { opacity: 0; }
+  50%  { opacity: 0.9; }
+  100% { opacity: 0; }
 }
 .yt-bg-overlay {
   position: absolute; inset: 0; z-index: 1;
-  background:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%);
-  /* subtle ember tint at bottom */
   background-image:
-    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.72) 100%),
-    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.18) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 80% at 50% 50%, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
+    radial-gradient(ellipse 100% 40% at 50% 100%, rgba(200,96,26,0.22) 0%, transparent 70%);
 }
 
 .entry-content {
   position: relative; z-index: 3;
   display: flex; flex-direction: column;
-  align-items: center; gap: 1.2rem; text-align: center;
+  align-items: center; gap: 1rem; text-align: center;
+  margin-top: -80px;
 }
 
-/* Bonfire GIF */
-.bonfire-wrap { position: relative; width: 200px; height: 200px; margin: 0 auto; }
-.bonfire-gif {
+/* Bonfire GIF pixel art */
+.bonfire-wrap { position: relative; width: 160px; height: 190px; margin: 0 auto; }
+.bonfire-vid {
   width: 100%; height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 24px rgba(200,96,26,0.7));
+  image-rendering: pixelated;
+  mix-blend-mode: multiply;
+  filter:
+    drop-shadow(0 0 18px rgba(200,96,26,0.8))
+    drop-shadow(0 0 40px rgba(224,120,32,0.45));
 }
 .bonfire-glow {
   position: absolute; bottom: -10px; left: 50%;
   transform: translateX(-50%);
-  width: 180px; height: 60px;
+  width: 220px; height: 60px;
   background: radial-gradient(ellipse, rgba(200,96,26,0.4) 0%, transparent 70%);
   animation: glow-pulse 1.5s ease-in-out infinite alternate;
 }
@@ -175,7 +184,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 17px;
   color: var(--ash);
   letter-spacing: 0.1em;
-  max-width: 480px;
+  white-space: nowrap;
 }
 .entry-btn {
   background: transparent;
@@ -212,6 +221,7 @@ a { text-decoration: none; color: inherit; }
   align-items: center;
   padding: 80px 6% 60px;
   position: relative;
+  z-index: 1;
 }
 
 .hero > * {
@@ -242,6 +252,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--text);
   text-shadow: 0 0 60px rgba(200,96,26,0.3);
   margin-bottom: 0.6rem;
+  margin-top: 1rem;
 }
 .hero-title .fire { color: var(--ember2); text-shadow: 0 0 30px rgba(224,120,32,0.8), 0 0 60px rgba(200,96,26,0.4); }
 
@@ -252,6 +263,7 @@ a { text-decoration: none; color: inherit; }
   color: var(--ash);
   margin-bottom: 2rem;
   max-width: 580px;
+  margin-left: -1.5rem;
 }
 
 .hero-status {
@@ -259,11 +271,11 @@ a { text-decoration: none; color: inherit; }
   flex-wrap: wrap; margin-bottom: 3rem;
 }
 .status-pill {
-  display: flex; align-items: center; gap: 8px;
+  display: flex; align-items: center; gap: 10px;
   border: 1px solid var(--border);
-  padding: 8px 18px;
+  padding: 12px 28px;
   font-family: var(--font-head);
-  font-size: 10px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--ash);
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
@@ -367,6 +379,21 @@ a { text-decoration: none; color: inherit; }
   font-size: 12px;
   color: var(--ember);
 }
+.profile-stat {
+  display: flex; align-items: baseline; gap: 6px;
+  margin-top: 8px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+.profile-stat-n {
+  font-family: var(--font-head);
+  font-size: 20px; font-weight: 700;
+  color: var(--gold); line-height: 1;
+}
+.profile-stat-l {
+  font-size: 9px; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.15em;
+}
 
 /* Tools / Attributes */
 .attrs-panel {
@@ -462,9 +489,32 @@ a { text-decoration: none; color: inherit; }
 .relic.active img { filter: sepia(0%); }
 
 /* ═══════════════════════════════════════
+   VIDEO BG — SEGUNDA PARTE
+═══════════════════════════════════════ */
+.site-video-bg {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.site-video-bg video {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 177.78vh;
+  height: 56.25vw;
+  min-width: 100%; min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  animation: site-vid-breathe 3s ease-in-out infinite;
+}
+@keyframes site-vid-breathe {
+  0%   { opacity: 0.5; }
+  50%  { opacity: 0.85; }
+  100% { opacity: 0.5; }
+}
+
+/* ═══════════════════════════════════════
    SECTION
 ═══════════════════════════════════════ */
-.section { padding: 60px 6%; max-width: 1300px; margin: 0 auto; }
+.section { padding: 60px 6%; max-width: 1300px; margin: 0 auto; position: relative; z-index: 1; }
 .sec-eyebrow {
   font-family: var(--font-head);
   font-size: 9px; font-weight: 600;
@@ -502,7 +552,7 @@ a { text-decoration: none; color: inherit; }
 .vessel.active { transform: scale(1.1); border-color: var(--ember); z-index: 2; box-shadow: 0 0 40px rgba(200,96,26,0.2); }
 .vessel:not(.active) { transform: scale(0.88); opacity: 0.6; }
 .vessel:not(.active):hover { opacity: 0.9; transform: scale(0.93); }
-.vessel-media { width: 200px; height: 355px; position: relative; background: #000; }
+.vessel-media { width: 260px; height: 462px; position: relative; background: #000; }
 .vessel-media iframe, .vessel-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: none; }
 .vessel-overlay {
   position: absolute; inset: 0;
@@ -618,25 +668,30 @@ a { text-decoration: none; color: inherit; }
 
 <!-- ENTRY SCREEN -->
 <div class="entry-screen" id="entryScreen">
-  <!-- YouTube background -->
+  <!-- Video background -->
   <div class="yt-bg-wrap">
-    <iframe
-      src="https://www.youtube.com/embed/j4lE-frL3vA?autoplay=1&mute=1&loop=1&playlist=j4lE-frL3vA&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0"
-      allow="autoplay; encrypted-media"
-      allowfullscreen
-      title="bg"></iframe>
+    <video autoplay muted loop playsinline>
+      <source src="fogueirabackground.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="yt-bg-overlay"></div>
   <canvas id="entryCanvas"></canvas>
   <div class="entry-content">
     <div class="bonfire-wrap">
       <div class="bonfire-glow"></div>
-      <img class="bonfire-gif" src="https://media.tenor.com/OqN_oKHgProAAAAC/dark-souls-bonfire.gif" alt="Bonfire">
+      <img class="bonfire-vid" src="fogueiragif.gif" alt="Bonfire">
     </div>
     <div class="entry-name">W<em>olff</em></div>
     <div class="entry-lore">"The fire fades, but the editor remains — shaping light from the dark."</div>
     <button class="entry-btn" id="enterSite">✦ &nbsp; Portfolio</button>
   </div>
+</div>
+
+<!-- VIDEO BG SEGUNDA PARTE -->
+<div class="site-video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="fogueirabackground.mp4" type="video/mp4">
+  </video>
 </div>
 
 <!-- HERO -->
@@ -645,10 +700,6 @@ a { text-decoration: none; color: inherit; }
   <div class="hero-title">W<span class="fire">olff</span></div>
   <div class="hero-tagline">"Raised from the ashes. Forged in short form."</div>
   <div class="hero-status">
-    <div class="stat-block">
-      <div class="stat-n">2+</div>
-      <div class="stat-l">Years of Trial</div>
-    </div>
     <div class="status-pill">
       <div class="status-dot"></div>
       Open to Long &amp; Short Form
@@ -684,6 +735,10 @@ a { text-decoration: none; color: inherit; }
       <div class="profile-info">
         <div class="profile-name">Rafael Wolff</div>
         <div class="profile-class">Chosen Undead · Video Editor</div>
+        <div class="profile-stat">
+          <span class="profile-stat-n">2+</span>
+          <span class="profile-stat-l">Years of Trial</span>
+        </div>
       </div>
 
       <div class="attrs-panel">
@@ -769,13 +824,7 @@ a { text-decoration: none; color: inherit; }
 <!-- FOOTER -->
 <div class="souls-footer">
   <div class="footer-bonfire-wrap">
-    <div style="position:relative;width:50px;height:65px;">
-      <div style="position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);width:80px;height:40px;background:radial-gradient(ellipse,rgba(200,96,26,0.3) 0%,transparent 70%);"></div>
-      <div class="flame flame-1" style="width:26px;height:38px;bottom:14px;"></div>
-      <div class="flame flame-2" style="width:18px;height:28px;bottom:20px;"></div>
-      <div class="flame flame-3" style="width:12px;height:20px;bottom:26px;"></div>
-      <div class="bonfire-base" style="width:40px;height:14px;bottom:0;"></div>
-    </div>
+    <img src="fogueiragif.gif" alt="Bonfire" style="width:40px;height:48px;object-fit:contain;image-rendering:pixelated;mix-blend-mode:multiply;filter:drop-shadow(0 0 8px rgba(200,96,26,0.9));">
   </div>
   <div class="footer-name">Portfolio · Wolff</div>
   <div class="footer-lore">© 2026 Rafael Wolff Luiz · All rights reserved · "You Died? Keep Editing."</div>
@@ -843,8 +892,10 @@ a { text-decoration: none; color: inherit; }
 })();
 
 // ── ENTRY ──
+document.body.classList.add('entry-open');
 document.getElementById('enterSite').addEventListener('click', () => {
   document.getElementById('entryScreen').classList.add('hidden');
+  document.body.classList.remove('entry-open');
 });
 
 // ── FEATURED VIDEOS ──
@@ -852,7 +903,6 @@ const videos = [
   { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier.", desc:'Short Form · Wolff_zx', cat:'Short Form' },
   { id:'Sl0q4CEJ_LE', title:'A beautiful Singer', desc:'Short Form · Wolff_zx', cat:'Short Form' },
   { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?', desc:'Short Form · Wolff_zx', cat:'Short Form' },
-  { id:'BNql12JDYuI', title:'The Creature are here!!!', desc:'Short Form · Wolff_zx', cat:'Short Form' },
 ];
 let cur = 0;
 const fp = document.getElementById('featuredPlayer');
@@ -886,7 +936,6 @@ const shorts = [
   { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier." },
   { id:'Sl0q4CEJ_LE', title:'A beautiful Singer' },
   { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?' },
-  { id:'BNql12JDYuI', title:'The Creature are here!!!' },
 ];
 let activeV = 1;
 const vt = document.getElementById('vesselsTrack');
