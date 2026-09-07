@@ -582,8 +582,33 @@ a { text-decoration: none; color: inherit; }
 .vessel-nav-btn:hover { background: rgba(200,96,26,0.2); border-color: var(--ember); }
 
 /* ═══════════════════════════════════════
-   CLIENT CHANNELS — COVENANTS
+   LONG FORM GRID
 ═══════════════════════════════════════ */
+.longform-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.lf-card {
+  background: linear-gradient(160deg, #1a1712, #0f0e0b);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: block;
+}
+.lf-card:hover { border-color: var(--ember); transform: translateY(-4px); box-shadow: 0 8px 30px rgba(200,96,26,0.15); }
+.lf-thumb { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+.lf-thumb img { width: 100%; height: 100%; object-fit: cover; filter: sepia(15%) contrast(1.05); transition: filter 0.2s, transform 0.2s; }
+.lf-card:hover .lf-thumb img { filter: sepia(0%) contrast(1.1); transform: scale(1.04); }
+.lf-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+.lf-card:hover .lf-overlay { background: rgba(0,0,0,0.15); }
+.lf-play { width: 48px; height: 48px; background: rgba(200,96,26,0.85); clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); display: flex; align-items: center; justify-content: center; font-size: 18px; transition: background 0.2s; }
+.lf-card:hover .lf-play { background: var(--ember); }
+.lf-info { padding: 12px 16px; border-top: 1px solid var(--border); }
+.lf-cat { font-family: var(--font-head); font-size: 9px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ember); margin-bottom: 5px; }
+.lf-title { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.03em; line-height: 1.4; }
 .covenants-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -764,23 +789,32 @@ a { text-decoration: none; color: inherit; }
     <div class="scroll-wrap">
       <div class="video-frame">
         <iframe id="featuredPlayer"
-          src="https://www.youtube.com/embed/IFAs8l-Ri2I?enablejsapi=1&rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/EUn_FOSJUow?enablejsapi=1&rel=0&modestbranding=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>
       <div class="scroll-info">
-        <div class="scroll-cat" id="featuredCat">Short Form</div>
+        <div class="scroll-cat" id="featuredCat">Long Form</div>
         <div class="scroll-row">
           <div>
-            <div class="scroll-title" id="featuredTitle">I'm the official voice of Markiplier.</div>
-            <div class="scroll-desc" id="featuredDesc">Short Form · Wolff_zx</div>
+            <div class="scroll-title" id="featuredTitle">I won worlds with my squad!</div>
+            <div class="scroll-desc" id="featuredDesc">Client Work · Long Form</div>
           </div>
-          <a href="https://www.youtube.com/shorts/IFAs8l-Ri2I" class="yt-btn" id="featuredLink" target="_blank">Watch</a>
+          <a href="https://www.youtube.com/watch?v=EUn_FOSJUow" class="yt-btn" id="featuredLink" target="_blank">Watch</a>
         </div>
         <div class="relics-strip" id="relicsStrip"></div>
       </div>
     </div>
   </div>
+</div>
+
+<div class="rune-divider">⚜ long form ⚜</div>
+
+<!-- LONG FORM -->
+<div class="section">
+  <div class="sec-eyebrow">Ancient Scrolls</div>
+  <div class="sec-title">Long <span class="dim">Form</span></div>
+  <div class="longform-grid" id="longformGrid"></div>
 </div>
 
 <div class="rune-divider">⚜ short form ⚜</div>
@@ -803,20 +837,10 @@ a { text-decoration: none; color: inherit; }
   <div class="sec-eyebrow">Covenants</div>
   <div class="sec-title">Client <span class="dim">Channels</span></div>
   <div class="covenants-grid">
-    <a href="#" class="covenant" target="_blank">
-      <div class="covenant-avatar">🎬</div>
-      <div class="covenant-name">Channel 1</div>
-      <div class="covenant-subs">—</div>
-    </a>
-    <a href="#" class="covenant" target="_blank">
-      <div class="covenant-avatar">📱</div>
-      <div class="covenant-name">Channel 2</div>
-      <div class="covenant-subs">—</div>
-    </a>
-    <a href="#" class="covenant" target="_blank">
-      <div class="covenant-avatar">🎞️</div>
-      <div class="covenant-name">Channel 3</div>
-      <div class="covenant-subs">—</div>
+    <a href="https://www.twitch.tv/sybilcat" class="covenant" target="_blank">
+      <div class="covenant-avatar"><img src="sybilicone.png" alt="Sybilcat"></div>
+      <div class="covenant-name">Sybilcat</div>
+      <div class="covenant-subs">Twitch</div>
     </a>
   </div>
 </div>
@@ -906,7 +930,7 @@ const videos = [
   { id:'BNql12JDYuI', title:'The Creature are here!!!', desc:'Short Form · Wolff_zx', cat:'Short Form' },
   { id:'EUn_FOSJUow', title:'I won worlds with my squad!', desc:'Client Work · Long Form', cat:'Long Form' },
 ];
-let cur = 0;
+let cur = 4;
 const fp = document.getElementById('featuredPlayer');
 const ft = document.getElementById('featuredTitle');
 const fd = document.getElementById('featuredDesc');
@@ -918,7 +942,7 @@ function buildRelics(){
   rs.innerHTML='';
   videos.forEach((v,i)=>{
     const d = document.createElement('div');
-    d.className='relic'+(i===0?' active':'');
+    d.className='relic'+(i===cur?' active':'');
     d.innerHTML=`<img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">`;
     d.addEventListener('click', ()=>switchVideo(i));
     rs.appendChild(d);
@@ -932,6 +956,29 @@ function switchVideo(i){
   document.querySelectorAll('.relic').forEach((r,j)=>r.classList.toggle('active',j===i));
 }
 buildRelics();
+
+// ── LONG FORM GRID ──
+const longVideos = [
+  { id:'EUn_FOSJUow', title:'I won worlds with my squad!', cat:'Client Work · Long Form' },
+];
+const lg = document.getElementById('longformGrid');
+longVideos.forEach(v => {
+  const a = document.createElement('a');
+  a.className = 'lf-card';
+  a.href = `https://www.youtube.com/watch?v=${v.id}`;
+  a.target = '_blank';
+  a.innerHTML = `
+    <div class="lf-thumb">
+      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">
+      <div class="lf-overlay"><div class="lf-play">▶</div></div>
+    </div>
+    <div class="lf-info">
+      <div class="lf-cat">${v.cat}</div>
+      <div class="lf-title">${v.title}</div>
+    </div>
+  `;
+  lg.appendChild(a);
+});
 
 // ── VESSELS (SHORTS CAROUSEL) ──
 const shorts = [
