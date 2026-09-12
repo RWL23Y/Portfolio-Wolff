@@ -669,12 +669,121 @@ a { text-decoration: none; color: inherit; }
 .footer-lore { font-family: var(--font-lore); font-style: italic; font-size: 11px; color: var(--muted); }
 
 /* ═══════════════════════════════════════
+   PLANS — THE OFFERINGS
+═══════════════════════════════════════ */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 1.5rem;
+}
+.pkg-section-label {
+  font-family: var(--font-head);
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 2rem; margin-bottom: 0.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.pkg-section-label::after {
+  content: '';
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+/* Free Trial Banner */
+.trial-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(200,96,26,0.08), rgba(184,149,58,0.06));
+  border: 1px solid rgba(200,96,26,0.3);
+  padding: 1.25rem 1.75rem;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  margin-bottom: 0.5rem;
+}
+.trial-title { font-family: var(--font-head); font-size: 14px; font-weight: 700; color: var(--ember2); letter-spacing: 0.05em; margin-bottom: 4px; }
+.trial-sub { font-size: 12px; color: var(--ash); font-style: italic; }
+.trial-btn {
+  background: var(--ember);
+  color: #0D0B08;
+  padding: 10px 24px;
+  font-family: var(--font-head);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  white-space: nowrap; flex-shrink: 0;
+  transition: background 0.2s;
+  display: inline-block;
+}
+.trial-btn:hover { background: var(--ember2); }
+
+/* Coming Soon */
+.coming-soon-box {
+  display: flex; align-items: center; gap: 1.5rem;
+  background: linear-gradient(160deg, #1a1712, #0f0e0b);
+  border: 1px dashed var(--border);
+  padding: 1.5rem 2rem;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  margin-top: 0.75rem;
+}
+.cs-icon { font-size: 28px; flex-shrink: 0; }
+.cs-text { font-size: 13px; color: var(--ash); line-height: 1.7; flex: 1; }
+
+.plan-card {
+  background: linear-gradient(160deg, #1a1712, #0f0e0b);
+  border: 1px solid var(--border);
+  padding: 1.75rem 1.5rem;
+  position: relative;
+  clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+  display: flex; flex-direction: column; gap: 10px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.plan-card:hover { border-color: var(--ember); box-shadow: 0 8px 40px rgba(200,96,26,0.15); }
+.plan-card.plan-featured {
+  border-color: var(--gold);
+  background: linear-gradient(160deg, #201c12, #120f08);
+  box-shadow: 0 0 30px rgba(184,149,58,0.1);
+}
+.plan-card.plan-featured:hover { border-color: var(--gold2); box-shadow: 0 8px 40px rgba(184,149,58,0.2); }
+.plan-badge {
+  position: absolute; top: -1px; right: 20px;
+  background: var(--gold); color: #0D0B08;
+  font-family: var(--font-head); font-size: 9px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 12px;
+  clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+}
+.plan-icon { font-size: 26px; line-height: 1; }
+.plan-name { font-family: var(--font-head); font-size: 17px; font-weight: 700; letter-spacing: 0.08em; color: var(--text); }
+.plan-price { font-family: var(--font-title); font-size: 38px; line-height: 1; color: var(--ember2); text-shadow: 0 0 20px rgba(200,96,26,0.4); }
+.plan-card.plan-featured .plan-price { color: var(--gold2); text-shadow: 0 0 20px rgba(184,149,58,0.4); }
+.plan-unit { font-family: var(--font-head); font-size: 13px; color: var(--muted); font-weight: 400; }
+.plan-sub { font-family: var(--font-lore); font-style: italic; font-size: 12px; color: var(--gold); margin-top: -4px; }
+.plan-desc { font-size: 12px; color: var(--ash); line-height: 1.6; font-style: italic; }
+.plan-perks { list-style: none; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.plan-perks li { font-size: 11px; color: var(--text); font-family: var(--font-head); letter-spacing: 0.04em; }
+.plan-btn {
+  display: block; text-align: center;
+  background: transparent; border: 1px solid var(--ember); color: var(--ember2);
+  padding: 10px 20px; font-family: var(--font-head);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.25s; margin-top: auto;
+}
+.plan-btn:hover { background: rgba(200,96,26,0.15); color: var(--ember); }
+.plan-card.plan-featured .plan-btn { border-color: var(--gold); color: var(--gold); }
+.plan-card.plan-featured .plan-btn:hover { background: rgba(184,149,58,0.15); color: var(--gold2); }
+
+/* ═══════════════════════════════════════
    RESPONSIVE
 ═══════════════════════════════════════ */
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; }
   .scroll-wrap { display: none; }
   .covenants-grid { grid-template-columns: repeat(2,1fr); }
+  .plans-grid { grid-template-columns: 1fr; }
+  .trial-banner { flex-direction: column; text-align: center; }
+  .coming-soon-box { flex-direction: column; text-align: center; }
 }
 @media (max-width: 600px) {
   .hero-title { font-size: clamp(52px, 18vw, 90px); }
@@ -830,6 +939,87 @@ a { text-decoration: none; color: inherit; }
   </div>
 </div>
 
+<div class="rune-divider">⚜ offerings ⚜</div>
+
+<div class="rune-divider">⚜ offerings ⚜</div>
+
+<!-- PLANS -->
+<div class="section">
+  <div class="sec-eyebrow">The Offerings</div>
+  <div class="sec-title">Editing <span class="dim">Packages</span></div>
+
+  <!-- FREE TRIAL BANNER -->
+  <div class="trial-banner">
+    <div class="trial-text">
+      <div class="trial-title">⚔ Free Trial Available</div>
+      <div class="trial-sub">Not sure yet? Let me edit one video for free — no commitment.</div>
+    </div>
+    <a href="https://x.com/RafaelW0lffLuiz" class="trial-btn" target="_blank">Claim Free Trial</a>
+  </div>
+
+  <!-- SHORT FORM -->
+  <div class="pkg-section-label">⚜ Short Form</div>
+  <div class="plans-grid">
+
+    <div class="plan-card">
+      <div class="plan-icon">⚡</div>
+      <div class="plan-name">1 Short</div>
+      <div class="plan-price">$15<span class="plan-unit">/video</span></div>
+      <div class="plan-desc">One short-form video, fully edited and ready to upload. Perfect to test the quality.</div>
+      <ul class="plan-perks">
+        <li>✦ Animated captions</li>
+        <li>✦ Color grading</li>
+        <li>✦ Sound design</li>
+        <li>✦ Hook-focused cuts</li>
+        <li>✦ 1 revision included</li>
+      </ul>
+      <a href="mailto:rafaelwolffluizx@gmail.com" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-icon">🔥</div>
+      <div class="plan-name">10 Shorts</div>
+      <div class="plan-price">$12.75<span class="plan-unit">/video</span></div>
+      <div class="plan-sub">$127.50 total · Save $22.50</div>
+      <div class="plan-desc">A solid monthly pack for creators who post consistently and want to grow their audience.</div>
+      <ul class="plan-perks">
+        <li>✦ Everything in 1 Short</li>
+        <li>✦ Priority delivery</li>
+        <li>✦ Consistent style</li>
+        <li>✦ 2 revisions per video</li>
+      </ul>
+      <a href="mailto:rafaelwolffluizx@gmail.com" class="plan-btn">Get Started</a>
+    </div>
+
+    <div class="plan-card plan-featured">
+      <div class="plan-badge">⚜ Best Value</div>
+      <div class="plan-icon">👑</div>
+      <div class="plan-name">17 Shorts</div>
+      <div class="plan-price">$11.50<span class="plan-unit">/video</span></div>
+      <div class="plan-sub">$195.50 total · Save $59.50</div>
+      <div class="plan-desc">Maximum output for creators who go hard. Lowest price, highest volume, fastest growth.</div>
+      <ul class="plan-perks">
+        <li>✦ Everything in 10 Shorts</li>
+        <li>✦ Dedicated editor</li>
+        <li>✦ 2 revisions per video</li>
+        <li>✦ Long-term partnership</li>
+        <li>✦ Strategy suggestions</li>
+      </ul>
+      <a href="mailto:rafaelwolffluizx@gmail.com" class="plan-btn">Get Started</a>
+    </div>
+
+  </div>
+
+  <!-- LONG FORM -->
+  <div class="pkg-section-label" style="margin-top:3rem;">⚜ Long Form <span style="font-size:11px;color:var(--muted);font-weight:400;letter-spacing:0.1em;">· Coming Soon</span></div>
+  <div class="coming-soon-box">
+    <div class="cs-icon">🏰</div>
+    <div class="cs-text">Long Form packages are being forged.<br><span style="color:var(--muted);">Reach out for a custom quote.</span></div>
+    <a href="mailto:rafaelwolffluizx@gmail.com" class="plan-btn" style="width:fit-content;margin:0;">Contact for Pricing</a>
+  </div>
+
+</div>
+
 <div class="rune-divider">⚜ covenants ⚜</div>
 
 <!-- CLIENT CHANNELS -->
@@ -960,6 +1150,8 @@ buildRelics();
 // ── LONG FORM GRID ──
 const longVideos = [
   { id:'EUn_FOSJUow', title:'I won worlds with my squad!', cat:'Client Work · Long Form' },
+  { id:'HwQCwWMBF_U', title:'Playing Lux bot against Xerath.', cat:'Long Form' },
+  { id:'6Ss1j0ZVzlU', title:'Some Stacks with Smolder.', cat:'Long Form' },
 ];
 const lg = document.getElementById('longformGrid');
 longVideos.forEach(v => {
