@@ -384,7 +384,7 @@ a { text-decoration: none; color: inherit; }
 }
 .profile-name {
   font-family: var(--font-head);
-  font-size: 17px; font-weight: 700;
+  font-size: 30px; font-weight: 700;
   letter-spacing: 0.08em;
   color: var(--text);
   margin-bottom: 2px;
@@ -392,7 +392,7 @@ a { text-decoration: none; color: inherit; }
 .profile-class {
   font-family: var(--font-lore);
   font-style: italic;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--ember);
 }
 .profile-stat {
@@ -403,7 +403,7 @@ a { text-decoration: none; color: inherit; }
 }
 .profile-stat-n {
   font-family: var(--font-head);
-  font-size: 20px; font-weight: 700;
+  font-size: 26px; font-weight: 700;
   color: var(--gold); line-height: 1;
 }
 .profile-stat-l {
@@ -488,6 +488,35 @@ a { text-decoration: none; color: inherit; }
   transition: all 0.25s; display: inline-block;
 }
 .yt-btn:hover { background: rgba(184,149,58,0.1); border-color: var(--gold); color: var(--gold2); }
+
+/* ABAS DO PLAYER */
+.feat-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  padding: 0 0 12px; position: relative; z-index: 1;
+}
+.feat-tab {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 8px 18px;
+  font-family: var(--font-head);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.25s;
+}
+.feat-tab:hover { color: var(--gold2); border-color: var(--gold); }
+.feat-tab.active { background: rgba(184,149,58,0.12); border-color: var(--gold); color: var(--gold2); }
+.feat-empty {
+  position: absolute; inset: 0; z-index: 2;
+  display: none; align-items: center; justify-content: center;
+  background: #000;
+  font-family: var(--font-head); font-size: 12px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+}
+.feat-empty.show { display: flex; }
 
 .relics-strip { display: flex; gap: 8px; margin-top: 14px; }
 .relic {
@@ -770,14 +799,14 @@ a { text-decoration: none; color: inherit; }
   clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
 }
 .plan-icon { font-size: 26px; line-height: 1; }
-.plan-name { font-family: var(--font-head); font-size: 17px; font-weight: 700; letter-spacing: 0.08em; color: var(--text); }
-.plan-price { font-family: var(--font-title); font-size: 38px; line-height: 1; color: var(--ember2); text-shadow: 0 0 20px rgba(200,96,26,0.4); }
+.plan-name { font-family: var(--font-head); font-size: 19px; font-weight: 700; letter-spacing: 0.08em; color: var(--text); }
+.plan-price { font-family: var(--font-title); font-size: 46px; line-height: 1; color: var(--ember2); text-shadow: 0 0 20px rgba(200,96,26,0.4); }
 .plan-card.plan-featured .plan-price { color: var(--gold2); text-shadow: 0 0 20px rgba(184,149,58,0.4); }
-.plan-unit { font-family: var(--font-head); font-size: 13px; color: var(--muted); font-weight: 400; }
-.plan-sub { font-family: var(--font-lore); font-style: italic; font-size: 12px; color: var(--gold); margin-top: -4px; }
-.plan-desc { font-size: 12px; color: var(--ash); line-height: 1.6; font-style: italic; }
+.plan-unit { font-family: var(--font-head); font-size: 15px; color: var(--muted); font-weight: 400; }
+.plan-sub { font-family: var(--font-lore); font-style: italic; font-size: 14px; color: var(--gold); margin-top: -4px; }
+.plan-desc { font-size: 14px; color: var(--ash); line-height: 1.6; font-style: italic; }
 .plan-perks { list-style: none; display: flex; flex-direction: column; gap: 5px; flex: 1; }
-.plan-perks li { font-size: 11px; color: var(--text); font-family: var(--font-head); letter-spacing: 0.04em; }
+.plan-perks li { font-size: 13px; color: var(--text); font-family: var(--font-head); letter-spacing: 0.04em; }
 .plan-btn {
   display: block; text-align: center;
   background: transparent; border: 1px solid var(--ember); color: var(--ember2);
@@ -912,20 +941,25 @@ a { text-decoration: none; color: inherit; }
 
     <!-- FEATURED VIDEO -->
     <div class="scroll-wrap">
+      <div class="feat-tabs">
+        <button class="feat-tab active" data-tab="league">LEAGUE</button>
+        <button class="feat-tab" data-tab="motion">Motion</button>
+        <button class="feat-tab" data-tab="institucional">Institucional</button>
+      </div>
       <div class="video-frame">
         <iframe id="featuredPlayer"
-          src="https://www.youtube.com/embed/EUn_FOSJUow?enablejsapi=1&rel=0&modestbranding=1"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
+        <div class="feat-empty" id="featEmpty">Em breve</div>
       </div>
       <div class="scroll-info">
         <div class="scroll-cat" id="featuredCat">Long Form</div>
         <div class="scroll-row">
           <div>
-            <div class="scroll-title" id="featuredTitle">I won worlds with my squad!</div>
+            <div class="scroll-title" id="featuredTitle">All I want is to be a platinum princess!!</div>
             <div class="scroll-desc" id="featuredDesc">Client Work · Long Form</div>
           </div>
-          <a href="https://www.youtube.com/watch?v=EUn_FOSJUow" class="yt-btn" id="featuredLink" target="_blank">Watch</a>
+          <a href="https://www.youtube.com/watch?v=wUnsI8vVMgs" class="yt-btn" id="featuredLink" target="_blank">Watch</a>
         </div>
         <div class="relics-strip" id="relicsStrip"></div>
       </div>
@@ -1128,25 +1162,34 @@ document.getElementById('enterSite').addEventListener('click', () => {
   document.body.classList.remove('entry-open');
 });
 
-// ── FEATURED VIDEOS ──
+// ── FEATURED VIDEOS (com abas) ──
+// tab: 'league' | 'motion' | 'institucional'
 const videos = [
-  { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier.", desc:'Short Form · Wolff_zx', cat:'Short Form' },
-  { id:'Sl0q4CEJ_LE', title:'A beautiful Singer', desc:'Short Form · Wolff_zx', cat:'Short Form' },
-  { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?', desc:'Short Form · Wolff_zx', cat:'Short Form' },
-  { id:'BNql12JDYuI', title:'The Creature are here!!!', desc:'Short Form · Wolff_zx', cat:'Short Form' },
-  { id:'EUn_FOSJUow', title:'I won worlds with my squad!', desc:'Client Work · Long Form', cat:'Long Form' },
+  { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier.", desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
+  { id:'Sl0q4CEJ_LE', title:'A beautiful Singer', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
+  { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
+  { id:'BNql12JDYuI', title:'The Creature are here!!!', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
+  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
+  { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
+  { id:'H3rJFs-LS-QM', title:'Learning Smolder was a LOT harder than I anticipated', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
+  { id:'g36FQUgL_V4', title:'How requests come into the marketing department.', desc:'Institucional', cat:'Institucional', tab:'institucional' },
 ];
-let cur = 4;
+
+let currentTab = 'league';
+let cur = 0;
 const fp = document.getElementById('featuredPlayer');
 const ft = document.getElementById('featuredTitle');
 const fd = document.getElementById('featuredDesc');
 const fc = document.getElementById('featuredCat');
 const fl = document.getElementById('featuredLink');
 const rs = document.getElementById('relicsStrip');
+const fe = document.getElementById('featEmpty');
+
+function visibleVideos(){ return videos.filter(v => v.tab === currentTab); }
 
 function buildRelics(){
   rs.innerHTML='';
-  videos.forEach((v,i)=>{
+  visibleVideos().forEach((v,i)=>{
     const d = document.createElement('div');
     d.className='relic'+(i===cur?' active':'');
     d.innerHTML=`<img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">`;
@@ -1154,20 +1197,45 @@ function buildRelics(){
     rs.appendChild(d);
   });
 }
+
 function switchVideo(i){
-  cur=i; const v=videos[i];
-  fp.src=`https://www.youtube.com/embed/${v.id}?enablejsapi=1&rel=0&modestbranding=1&autoplay=1`;
-  ft.textContent=v.title; fd.textContent=v.desc; fc.textContent=v.cat;
-  fl.href=`https://www.youtube.com/watch?v=${v.id}`;
-  document.querySelectorAll('.relic').forEach((r,j)=>r.classList.toggle('active',j===i));
+  const list = visibleVideos();
+  if(!list.length) return;
+  cur = i; const v = list[i];
+  fp.src = `https://www.youtube.com/embed/${v.id}?enablejsapi=1&rel=0&modestbranding=1&autoplay=1`;
+  ft.textContent = v.title; fd.textContent = v.desc; fc.textContent = v.cat;
+  fl.href = `https://www.youtube.com/watch?v=${v.id}`;
+  document.querySelectorAll('.relic').forEach((r,j)=>r.classList.toggle('active', j===i));
 }
-buildRelics();
+
+function setTab(tab){
+  currentTab = tab; cur = 0;
+  document.querySelectorAll('.feat-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  const list = visibleVideos();
+  if(!list.length){
+    fp.removeAttribute('src');
+    fe.classList.add('show');
+    rs.innerHTML='';
+    ft.textContent = 'Em breve';
+    fd.textContent = 'Vídeos desta categoria serão adicionados em breve.';
+    fc.textContent = document.querySelector(`.feat-tab[data-tab="${tab}"]`).textContent;
+    fl.style.display = 'none';
+  } else {
+    fe.classList.remove('show');
+    fl.style.display = '';
+    buildRelics();
+    switchVideo(0);
+  }
+}
+
+document.querySelectorAll('.feat-tab').forEach(b=>b.addEventListener('click', ()=>setTab(b.dataset.tab)));
+setTab('league');
 
 // ── LONG FORM GRID ──
 const longVideos = [
-  { id:'EUn_FOSJUow', title:'I won worlds with my squad!', cat:'Client Work · Long Form' },
-  { id:'HwQCwWMBF_U', title:'Playing Lux bot against Xerath.', cat:'Long Form' },
-  { id:'6Ss1j0ZVzlU', title:'Some Stacks with Smolder.', cat:'Long Form' },
+  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', cat:'Client Work · Long Form' },
+  { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', cat:'Client Work · Long Form' },
+  { id:'H3rJFs-LS-QM', title:'Learning Smolder was a LOT harder than I anticipated', cat:'Client Work · Long Form' },
 ];
 const lg = document.getElementById('longformGrid');
 longVideos.forEach(v => {
