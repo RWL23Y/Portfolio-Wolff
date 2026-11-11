@@ -869,6 +869,16 @@ a { text-decoration: none; color: inherit; }
 .side-souls .soul-btn.s-discord   { color: #5865F2; }
 .side-souls .soul-btn.s-instagram { color: #E1306C; }
 .side-souls .soul-btn:hover { background: rgba(255,255,255,0.06); }
+/* GATINHO NO FUNDO */
+.bg-cat {
+  position: fixed; right: 4%; bottom: 3%;
+  width: 200px; height: auto;
+  color: var(--ember);
+  opacity: 0.2;
+  z-index: 0;
+  pointer-events: none;
+}
+.bg-cat svg { width: 100%; height: auto; display: block; }
 </style>
 </head>
 <body>
@@ -905,6 +915,24 @@ a { text-decoration: none; color: inherit; }
   <video autoplay muted loop playsinline>
     <source src="fogueirabackground.mp4" type="video/mp4">
   </video>
+</div>
+
+<!-- GATINHO NO FUNDO -->
+<div class="bg-cat" aria-hidden="true">
+  <svg viewBox="0 0 300 420" xmlns="http://www.w3.org/2000/svg">
+    <g fill="currentColor">
+      <path d="M150 412 C128 360 138 290 190 246 C210 228 228 214 238 196 L236 178 L222 120 L250 160 L272 118 C290 140 298 160 296 180 C298 196 292 206 284 214 C288 226 286 236 282 246 C286 300 282 350 280 390 C280 402 274 412 262 412 Z"/>
+      <path d="M152 400 C110 384 98 340 120 312 C140 284 118 256 102 232 C88 210 100 188 116 170 C130 156 126 136 116 120" fill="none" stroke="currentColor" stroke-width="22" stroke-linecap="round"/>
+      <path d="M116 122 C100 104 96 82 112 60 C116 80 124 84 124 98 C132 90 130 76 124 64 C140 80 142 106 128 126 Z"/>
+      <path d="M100 216 C92 226 90 240 98 248 C104 254 116 250 112 240 C118 232 114 220 106 212 Z"/>
+    </g>
+    <g fill="none" stroke="var(--dark)" stroke-linecap="round" stroke-width="3">
+      <path d="M214 290 C228 310 228 340 220 370"/>
+      <path d="M140 330 C150 350 152 380 146 400"/>
+      <path d="M132 300 C140 282 150 270 164 262"/>
+      <path d="M262 176 C268 182 276 182 282 176"/>
+    </g>
+  </svg>
 </div>
 
 <!-- HERO -->
