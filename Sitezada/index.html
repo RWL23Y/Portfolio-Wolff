@@ -654,6 +654,31 @@ a { text-decoration: none; color: inherit; }
 .lf-info { padding: 12px 16px; border-top: 1px solid var(--border); }
 .lf-cat { font-family: var(--font-head); font-size: 9px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ember); margin-bottom: 5px; }
 .lf-title { font-family: var(--font-head); font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: 0.03em; line-height: 1.4; }
+/* ABAS DA SEÇÃO LONG FORM */
+.lf-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+.lf-tab {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 8px 18px;
+  font-family: var(--font-head);
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.25s;
+}
+.lf-tab:hover { color: var(--gold2); border-color: var(--gold); }
+.lf-tab.active { background: rgba(184,149,58,0.12); border-color: var(--gold); color: var(--gold2); }
+.lf-empty {
+  grid-column: 1 / -1;
+  text-align: center; padding: 3rem 1rem;
+  border: 1px dashed var(--border);
+  font-family: var(--font-head); font-size: 12px;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--gold);
+}
+
 .covenants-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -835,6 +860,15 @@ a { text-decoration: none; color: inherit; }
   .covenants-grid { grid-template-columns: 1fr; }
   .vessels-track { gap: 14px; }
 }
+/* AJUSTES: ABAS MAIORES E REDES MAIORES/COLORIDAS */
+.feat-tab, .lf-tab { padding: 12px 26px; font-size: 13px; }
+.side-souls .soul-btn { width: 46px; height: 46px; }
+.side-souls .soul-btn svg { width: 24px; height: 24px; }
+.side-souls .soul-btn.s-email     { color: #EA4335; }
+.side-souls .soul-btn.s-twitter   { color: #FFFFFF; }
+.side-souls .soul-btn.s-discord   { color: #5865F2; }
+.side-souls .soul-btn.s-instagram { color: #E1306C; }
+.side-souls .soul-btn:hover { background: rgba(255,255,255,0.06); }
 </style>
 </head>
 <body>
@@ -973,6 +1007,12 @@ a { text-decoration: none; color: inherit; }
 <div class="section">
   <div class="sec-eyebrow">Ancient Scrolls</div>
   <div class="sec-title">Long <span class="dim">Form</span></div>
+  <div class="lf-tabs" id="lfTabs">
+    <button class="lf-tab active" data-lftab="longform">Long Form</button>
+    <button class="lf-tab" data-lftab="motion">Motion</button>
+    <button class="lf-tab" data-lftab="institucional">Institucional</button>
+    <button class="lf-tab" data-lftab="games">Games</button>
+  </div>
   <div class="longform-grid" id="longformGrid"></div>
 </div>
 
@@ -1165,13 +1205,13 @@ document.getElementById('enterSite').addEventListener('click', () => {
 // ── FEATURED VIDEOS (com abas) ──
 // tab: 'league' | 'motion' | 'institucional'
 const videos = [
+  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
   { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier.", desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
   { id:'Sl0q4CEJ_LE', title:'A beautiful Singer', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
   { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
   { id:'BNql12JDYuI', title:'The Creature are here!!!', desc:'Short Form · Wolff_zx', cat:'Short Form', tab:'league' },
-  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
   { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
-  { id:'H3rJFs-LS-QM', title:'Learning Smolder was a LOT harder than I anticipated', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
+  { id:'H3rJFsLS-QM', title:'Learning Smolder was a LOT harder than I anticipated', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
   { id:'g36FQUgL_V4', title:'How requests come into the marketing department.', desc:'Institucional', cat:'Institucional', tab:'institucional' },
 ];
 
@@ -1231,30 +1271,49 @@ function setTab(tab){
 document.querySelectorAll('.feat-tab').forEach(b=>b.addEventListener('click', ()=>setTab(b.dataset.tab)));
 setTab('league');
 
-// ── LONG FORM GRID ──
+// ── LONG FORM GRID (com abas) ──
 const longVideos = [
-  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', cat:'Client Work · Long Form' },
-  { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', cat:'Client Work · Long Form' },
-  { id:'H3rJFs-LS-QM', title:'Learning Smolder was a LOT harder than I anticipated', cat:'Client Work · Long Form' },
+  { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', cat:'Client Work · Long Form', tab:'longform' },
+  { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', cat:'Client Work · Long Form', tab:'longform' },
+  { id:'H3rJFsLS-QM', title:'Learning Smolder was a LOT harder than I anticipated', cat:'Client Work · Long Form', tab:'longform' },
+  { id:'g36FQUgL_V4', title:'How requests come into the marketing department.', cat:'Institucional', tab:'institucional' },
 ];
 const lg = document.getElementById('longformGrid');
-longVideos.forEach(v => {
-  const a = document.createElement('a');
-  a.className = 'lf-card';
-  a.href = `https://www.youtube.com/watch?v=${v.id}`;
-  a.target = '_blank';
-  a.innerHTML = `
-    <div class="lf-thumb">
-      <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">
-      <div class="lf-overlay"><div class="lf-play">▶</div></div>
-    </div>
-    <div class="lf-info">
-      <div class="lf-cat">${v.cat}</div>
-      <div class="lf-title">${v.title}</div>
-    </div>
-  `;
-  lg.appendChild(a);
-});
+
+function renderLongForm(tab){
+  lg.innerHTML = '';
+  const list = longVideos.filter(v => v.tab === tab);
+  if(!list.length){
+    const empty = document.createElement('div');
+    empty.className = 'lf-empty';
+    empty.textContent = 'Em breve';
+    lg.appendChild(empty);
+    return;
+  }
+  list.forEach(v => {
+    const a = document.createElement('a');
+    a.className = 'lf-card';
+    a.href = `https://www.youtube.com/watch?v=${v.id}`;
+    a.target = '_blank';
+    a.innerHTML = `
+      <div class="lf-thumb">
+        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" alt="${v.title}">
+        <div class="lf-overlay"><div class="lf-play">▶</div></div>
+      </div>
+      <div class="lf-info">
+        <div class="lf-cat">${v.cat}</div>
+        <div class="lf-title">${v.title}</div>
+      </div>
+    `;
+    lg.appendChild(a);
+  });
+}
+
+document.querySelectorAll('.lf-tab').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.lf-tab').forEach(x => x.classList.toggle('active', x === b));
+  renderLongForm(b.dataset.lftab);
+}));
+renderLongForm('longform');
 
 // ── VESSELS (SHORTS CAROUSEL) ──
 const shorts = [
