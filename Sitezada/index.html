@@ -1274,12 +1274,15 @@ document.getElementById('enterSite').addEventListener('click', () => {
 // ── FEATURED VIDEOS (com abas) ──
 // tab: 'league' | 'motion' | 'institucional'
 const videos = [
+  { id:'AF9V-9IzLpI', title:'The Universe Beyond Our Imagination', desc:'Motion Graphics', cat:'Motion Graphics', tab:'league' },
   { id:'pEo9sC0TZrc', title:'Luminous Forest Motion', desc:'Motion Graphics', cat:'Motion Graphics', tab:'league' },
-  { id:'SMGKRkVKkNE', title:'Winning with Miss Fortune t1 and my friends', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
+  { id:'dxqDmeybZ5I', title:"The Nexus Wasn't the Only Thing Destroyed", desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
   { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', desc:'Client Work · Long Form', cat:'Long Form', tab:'league' },
   { id:'SAmUFYi7WbI', title:'How are we doing the marketing?', desc:'Alicerce · Motion Graphics', cat:'Motion Graphics', tab:'league' },
   { id:'iWlYaXfH7TQ', title:'Sword Arena Motion Graphics', desc:'Motion Graphics', cat:'Motion Graphics', tab:'motion' },
   { id:'pEo9sC0TZrc', title:'Luminous Forest Motion', desc:'Motion Graphics', cat:'Motion Graphics', tab:'motion' },
+  { id:'9EYt7Qr2_Yo', title:'Kingdom', desc:'Motion Graphics', cat:'Motion Graphics', tab:'motion' },
+  { id:'AF9V-9IzLpI', title:'The Universe Beyond Our Imagination', desc:'Motion Graphics', cat:'Motion Graphics', tab:'motion' },
   { id:'SAmUFYi7WbI', title:'How are we doing the marketing?', desc:'Institucional', cat:'Institucional', tab:'institucional' },
   { id:'SucymyBAlao', title:'How do we manage incoming requests?', desc:'Institucional', cat:'Institucional', tab:'institucional' },
   { id:'OYQjxrWqnis', title:'How does a request come to marketing?', desc:'Institucional', cat:'Institucional', tab:'institucional' },
@@ -1347,9 +1350,12 @@ const longVideos = [
   { id:'wUnsI8vVMgs', title:'All I want is to be a platinum princess!!', cat:'Client Work · Long Form', tab:'games' },
   { id:'4go0qy40QHQ', title:'Ranked 5s with Sybil and her hot friends', cat:'Client Work · Long Form', tab:'games' },
   { id:'H3rJFsLS-QM', title:'Learning Smolder was a LOT harder than I anticipated', cat:'Client Work · Long Form', tab:'games' },
-  { id:'SMGKRkVKkNE', title:'Winning with Miss Fortune t1 and my friends', cat:'Client Work · Long Form', tab:'games' },
+  { id:'dxqDmeybZ5I', title:"The Nexus Wasn't the Only Thing Destroyed", cat:'Client Work · Long Form', tab:'games' },
+  { id:'G5yFZHO5zo0', title:'They Weren\'t Ready for Bot Lane Ahri', cat:'Client Work · Long Form', tab:'games' },
   { id:'iWlYaXfH7TQ', title:'Sword Arena Motion Graphics', cat:'Motion Graphics', tab:'motion' },
   { id:'pEo9sC0TZrc', title:'Luminous Forest Motion', cat:'Motion Graphics', tab:'motion' },
+  { id:'9EYt7Qr2_Yo', title:'Kingdom', cat:'Motion Graphics', tab:'motion' },
+  { id:'AF9V-9IzLpI', title:'The Universe Beyond Our Imagination', cat:'Motion Graphics', tab:'motion' },
   { id:'SAmUFYi7WbI', title:'How are we doing the marketing?', cat:'Institucional', tab:'institucional' },
   { id:'SucymyBAlao', title:'How do we manage incoming requests?', cat:'Institucional', tab:'institucional' },
   { id:'OYQjxrWqnis', title:'How does a request come to marketing?', cat:'Institucional', tab:'institucional' },
@@ -1394,11 +1400,12 @@ renderLongForm('games');
 
 // ── VESSELS (SHORTS CAROUSEL) ──
 const shorts = [
+  { id:'aFCZrFaOBRk', title:'So many flashes' },
   { id:'IFAs8l-Ri2I', title:"I'm the official voice of Markiplier." },
   { id:'Sl0q4CEJ_LE', title:'A beautiful Singer' },
   { id:'igBBcqlHqOI', title:'HOW IS SHE SO BLIND?' },
 ];
-let activeV = 1;
+let activeV = 0;
 const vt = document.getElementById('vesselsTrack');
 
 function buildVessel(v,i){
